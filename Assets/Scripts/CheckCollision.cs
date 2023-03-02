@@ -4,8 +4,21 @@ using UnityEngine;
 
 public class CheckCollision : MonoBehaviour
 {
+    private MeshRenderer meshRenderer;
+    
+
+    private void Start()
+    {
+        meshRenderer = GetComponent<MeshRenderer>();
+    }
+
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("You hitted me!");
+        
+        if (collision.collider.tag == "Player")
+        {            
+            meshRenderer.material.color = Color.red;
+            gameObject.tag = "Hitted";
+        }
     }
 }
